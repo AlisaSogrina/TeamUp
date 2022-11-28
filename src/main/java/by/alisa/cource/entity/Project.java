@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -12,8 +13,9 @@ import javax.validation.constraints.Size;
 @Table(name="Project")
 public class Project {
 
-    public Project(String progectName) {
-        setProjectName(progectName);
+    public Project(String projectName, String projectText) {
+        setProjectName(projectName);
+        setProjectText(projectText);
     }
 
     @Id
@@ -23,5 +25,10 @@ public class Project {
     @Size(min = 3, message = "Project name length should be greater than 2")
     private String projectName;
 
+    @Size(min = 3, message = "Project length should be greater than 2")
+    @Column(columnDefinition = "TEXT")
+    private String projectText;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
 }

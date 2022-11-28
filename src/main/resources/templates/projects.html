@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects</title>
+    <link th:href="@{/styles/start_page.css}" rel="stylesheet" />
+</head>
+<body>
+<a>Create project</a>
+<div class="wrapper fadeInDown">
+
+    <div id="formContent">
+
+        <form method="post" th:object="${projectForm}">
+            <!-- Error handling -->
+            <input type="text" th:field="*{projectName}"
+                   id="projectName" class="fadeIn second" name="projectName" placeholder="projectName">
+            <input type="text" th:field="*{projectText}"
+                   id="projectText" class="fadeIn third" name="projectText" placeholder="projectText">
+
+            <input type="submit" value="Create project idea"
+                   class="fadeIn fourth">
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

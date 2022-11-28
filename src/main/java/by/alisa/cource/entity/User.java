@@ -31,13 +31,14 @@ public class User implements UserDetails {
     @Size(min = 2, message = "Password length should be greater than 1")
     private String password;
 
-
     @Transient
     private String passwordConfirm;  // double check just in <form>, won't be in db
 
-
     @ManyToMany(fetch = FetchType.EAGER)  // data will be loaded immediately
     private Set<Role> roles;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<Project> projects;
 
 
 //    @OneToMany(mappedBy = "user", cascade=CascadeType.ALL)
