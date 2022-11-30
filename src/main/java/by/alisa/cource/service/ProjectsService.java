@@ -24,6 +24,7 @@ public class ProjectsService {
 
         project.setProjectText(project.getProjectText());
         repository.save(project);
+
         return true;
     }
 }

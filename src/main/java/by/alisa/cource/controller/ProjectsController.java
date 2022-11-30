@@ -3,6 +3,7 @@ package by.alisa.cource.controller;
 import by.alisa.cource.entity.Project;
 import by.alisa.cource.entity.User;
 import by.alisa.cource.service.ProjectsService;
+import by.alisa.cource.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,14 +22,13 @@ public class ProjectsController {
     @Autowired
     ProjectsService projectsService;
 
-    @GetMapping
-    public String projects() {
-        return "projects";
-    }
+    @Autowired
+    UsersService usersService;
 
     @GetMapping
     public String projects(Model model) {
         model.addAttribute("projectForm", new Project());
+        model.addAttribute("userID", usersService.getCurrentAuthenticatedUser().getId());
         return "projects";
     }
 
@@ -39,7 +39,7 @@ public class ProjectsController {
         if (bindingResult.hasErrors()) {  // @Valid checks for limitations, like that provided from @Size, and puts to bindingResult
             return "projects";
         }
-
+        projectForm.setUser(usersService.getCurrentAuthenticatedUser());
         if (!projectsService.saveProject(projectForm)){
             model.addAttribute("nameError", "Project with such a name already exists");
             return "projects";
