@@ -46,7 +46,7 @@ public class ProjectsController {
 
     @GetMapping("/{id}")
     String getProject(Model model, @PathVariable Long id) {
-        model.addAttribute("question", projectsService.getById(id));
-        return "question";
+        model.addAttribute("project", projectsService.getById(id));
+        return "project";
     }
 }

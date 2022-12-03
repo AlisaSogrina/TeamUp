@@ -1,15 +1,9 @@
 package by.alisa.cource.service;
 
 import by.alisa.cource.entity.Project;
-import by.alisa.cource.entity.Role;
-import by.alisa.cource.entity.User;
 import by.alisa.cource.repository.ProjectsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
 
 @Service
 public class ProjectsService {
@@ -24,12 +18,12 @@ public class ProjectsService {
     }
 
     public boolean saveProject(Project project) {
-        Project projectFromDB = repository.findByProjectName(project.getProjectName());
+        Project projectFromDB = repository.findByName(project.getName());
         if (projectFromDB != null) {
             return false;
         }
 
-        project.setProjectText(project.getProjectText());
+        project.setText(project.getText());
         repository.save(project);
 
         return true;

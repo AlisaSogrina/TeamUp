@@ -14,10 +14,10 @@
 
         <form method="post" th:object="${projectForm}">
             <!-- Error handling -->
-            <input type="text" th:field="*{projectName}"
-                   id="projectName" class="fadeIn second" name="projectName" placeholder="projectName">
-            <input type="text" th:field="*{projectText}"
-                   id="projectText" class="fadeIn third" name="projectText" placeholder="projectText">
+            <input type="text" th:field="*{name}"
+                   id="name" class="fadeIn second" name="name" placeholder="name">
+            <input type="text" th:field="*{text}"
+                   id="text" class="fadeIn third" name="text" placeholder="text">
 
             <input type="submit" value="Create project idea"
                    class="fadeIn fourth">
@@ -25,7 +25,7 @@
     </div>
 </div>
 
-<form method="get" th:object="${projectSubstr}" th:action="@{/findProject}">
+<form method="get" th:object="${substr}" th:action="@{/findProject}">
     <div class="col-3">
         <input class="effect-8" th:field="*{value}" type="text" placeholder="Enter words to find project ...">
         <span class="focus-border"><i></i></span>
@@ -42,7 +42,7 @@
     </li>
 </ul>
 
-<p th:unless="${questions.iterator().hasNext()}">No questions found</p>
+<p th:unless="${projects.iterator().hasNext()}">No projects found</p>
 
 </body>
 </html>
