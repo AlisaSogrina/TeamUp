@@ -5,6 +5,7 @@
     <title>Projects</title>
     <link th:href="@{/styles/start_page.css}" rel="stylesheet" />
     <link th:href="@{/styles/list_of_smth.css}" rel="stylesheet" />
+    <link th:href="@{/styles/input.css}" rel="stylesheet" />
 </head>
 <body>
 <a>Create project</a>
@@ -25,20 +26,13 @@
     </div>
 </div>
 
-<form method="get" th:object="${substr}" th:action="@{/findProject}">
-    <div class="col-3">
-        <input class="effect-8" th:field="*{value}" type="text" placeholder="Enter words to find project ...">
-        <span class="focus-border"><i></i></span>
-    </div>
-    <button class="submit_button" type="submit">Find</button>
-</form>
 
 <h1>Projects:</h1>
 <ul th:each="project : ${projects}">
     <li>
         <a th:href="@{/projects/{id}(id=${project.id})}"
            th:name="${project.name}"
-           th:text="${project.text}"/>
+           th:text="${project.text}"></a>
     </li>
 </ul>
 

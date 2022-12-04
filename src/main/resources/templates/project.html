@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project</title>
+    <link th:href="@{/styles/input.css}" rel="stylesheet" />
+    <link th:href="@{/styles/back_button.css}" rel="stylesheet" />
+    <script type="text/javascript" th:src="@{/js/like.js}"></script>
+</head>
+<body>
+<form th:action="@{/projects/back}">
+    <button class="back-button" type="submit">Back</button>
+</form>
+
+<h1>Project:</h1>
+<p th:text="${project.name}"></p>
+<h1>Text</h1>
+<p th:text="${project.text} ?: 'no text yet' "></p>
+
+
+</body>
+</html>
