@@ -32,4 +32,8 @@ public class ProjectsService {
     public Project getById(Long id) {
         return repository.findById(id).orElseThrow();
     }
+
+    public void deleteById(Long id) {
+        repository.deleteById(id);
+    }
 }

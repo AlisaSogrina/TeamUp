@@ -16,6 +16,10 @@
 <p th:text="${project.name}"></p>
 <h1>Text</h1>
 <p th:text="${project.text} ?: 'no text yet' "></p>
+<h1>Delete</h1>
+<form method="post" th:action="@{'/projects/{id}/delete'(id=${project.id})}">
+    <button class="back-button" type="submit">Delete</button>
+</form>
 
 
 </body>
