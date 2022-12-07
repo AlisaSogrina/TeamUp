@@ -1,0 +1,28 @@
+html {
+    background-color: #92badd;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    height: 100vh;
+}
+
+a {
+    color: darkslategray;
+    display:inline-block;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+h1 {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    display:inline-block;
+    margin: 40px 8px 10px 8px;
+    color: darkslategray;
+}
+
+p {
+    color: darkslategray;
+}

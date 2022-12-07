@@ -22,10 +22,7 @@ public class ProjectsService {
         if (projectFromDB != null) {
             return false;
         }
-
-        project.setText(project.getText());
         repository.save(project);
-
         return true;
     }
 

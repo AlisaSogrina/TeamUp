@@ -1,26 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Project</title>
-    <link th:href="@{/styles/input.css}" rel="stylesheet" />
-    <link th:href="@{/styles/back_button.css}" rel="stylesheet" />
+    <link th:href="@{/styles/project.css}" rel="stylesheet"/>
     <script type="text/javascript" th:src="@{/js/like.js}"></script>
 </head>
 <body>
-<form th:action="@{/projects/back}">
-    <button class="back-button" type="submit">Back</button>
-</form>
 
-<h1>Project:</h1>
+<h1>Project</h1>
 <p th:text="${project.name}"></p>
 <h1>Text</h1>
 <p th:text="${project.text} ?: 'no text yet' "></p>
-<h1>Delete</h1>
-<form method="post" th:action="@{'/projects/{id}/delete'(id=${project.id})}">
-    <button class="back-button" type="submit">Delete</button>
-</form>
-
-
+    <h1>Delete</h1>
+    <form method="post" th:action="@{'/projects/{id}/delete'(id=${project.id})}">
+        <button class="back-button" type="submit">Delete</button>
+    </form>
 </body>
 </html>
