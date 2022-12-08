@@ -50,6 +50,7 @@ public class ProjectsController {
     @GetMapping("/{id}")
     String getProject(Model model, @PathVariable Long id) {
         model.addAttribute("project", projectsService.getById(id));
+        model.addAttribute("current_user", usersService.getCurrentAuthenticatedUser());
         return "project";
     }
 
