@@ -52,13 +52,13 @@ h2 {
     cursor: pointer;
 }
 
-.button1 {
+.delete_button {
     background-color: white;
     color: black;
     border: 2px solid seagreen;
 }
 
-.button1:hover {
+.delete_button:hover {
     background-color: seagreen;
     color: white;
 }
