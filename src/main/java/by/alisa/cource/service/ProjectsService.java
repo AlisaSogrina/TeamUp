@@ -10,12 +10,10 @@ public class ProjectsService {
     @Autowired
     private ProjectsRepository repository;
 
-    @Autowired
-    private UsersService usersService;
 
-    public Iterable<Project> findAllThatContainsSubstr(String substr) {
-        return repository.findAllByTextContainsIgnoreCase(substr);
-    }
+//    public Iterable<Project> findAllThatContainsSubstr(String substr) {
+//        return repository.findAllByTextContainsIgnoreCase(substr);
+//    }
 
     public boolean saveProject(Project project) {
         Project projectFromDB = repository.findByName(project.getName());
