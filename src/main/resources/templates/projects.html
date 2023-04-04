@@ -3,26 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Projects</title>
-    <link th:href="@{/styles/start_page.css}" rel="stylesheet" />
+    <link th:href="@{/styles/projects.css}" rel="stylesheet" />
+
 </head>
 <body>
-<a>Create project</a>
-<div class="wrapper fadeInDown">
+<h2>Create project</h2>
 
     <div id="formContent">
 
         <form method="post" th:object="${projectForm}">
             <!-- Error handling -->
-            <input type="text" th:field="*{projectName}"
-                   id="projectName" class="fadeIn second" name="projectName" placeholder="projectName">
-            <input type="text" th:field="*{projectText}"
-                   id="projectText" class="fadeIn third" name="projectText" placeholder="projectText">
+            <input type="text" th:field="*{name}"
+                   id="name" class="fadeIn second" name="name" placeholder="name">
+            <input type="text" th:field="*{text}"
+                   id="text" class="fadeIn third" name="text" placeholder="text">
 
             <input type="submit" value="Create project idea"
                    class="fadeIn fourth">
         </form>
     </div>
-</div>
+
+
+
+<h1>Projects:</h1>
+<ul th:each="project : ${projects}">
+    <li>
+        <a th:href="@{/projects/{id}(id=${project.id})}"
+           th:name="${project.name}"
+           th:text="${project.name}"></a>
+    </li>
+</ul>
+
+<p th:unless="${projects.iterator().hasNext()}">No projects found</p>
 
 </body>
 </html>

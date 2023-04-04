@@ -1,9 +1,7 @@
 package by.alisa.cource;
 
 import by.alisa.cource.entity.Role;
-import by.alisa.cource.entity.User;
 import by.alisa.cource.repository.RolesRepository;
-import by.alisa.cource.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

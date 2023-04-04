@@ -1,17 +1,14 @@
 package by.alisa.cource.controller;
 
 import by.alisa.cource.entity.Project;
-import by.alisa.cource.entity.User;
+import by.alisa.cource.repository.ProjectsRepository;
 import by.alisa.cource.service.ProjectsService;
 import by.alisa.cource.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -23,12 +20,15 @@ public class ProjectsController {
     ProjectsService projectsService;
 
     @Autowired
+    ProjectsRepository projectsRepository;
+    @Autowired
     UsersService usersService;
 
     @GetMapping
     public String projects(Model model) {
         model.addAttribute("projectForm", new Project());
         model.addAttribute("userID", usersService.getCurrentAuthenticatedUser().getId());
+        model.addAttribute("projects", projectsRepository.findAll());
         return "projects";
     }
 
@@ -45,5 +45,18 @@ public class ProjectsController {
             return "projects";
         }
         return "redirect:projects";
+    }
+
+    @GetMapping("/{id}")
+    String getProject(Model model, @PathVariable Long id) {
+        model.addAttribute("project", projectsService.getById(id));
+        model.addAttribute("current_user", usersService.getCurrentAuthenticatedUser());
+        return "project";
+    }
+
+    @PostMapping("/{id}/delete")
+    String deleteProject(@PathVariable Long id) {
+        projectsService.deleteById(id);
+        return "redirect:/projects";
     }
 }
