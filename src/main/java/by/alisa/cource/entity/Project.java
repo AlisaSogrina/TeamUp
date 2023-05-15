@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -30,4 +31,10 @@ public class Project {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<User> usersTakePart;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<User> usersWannaTakePart;
 }

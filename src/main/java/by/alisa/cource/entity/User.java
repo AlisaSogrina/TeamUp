@@ -40,6 +40,12 @@ public class User implements UserDetails {
     @OneToMany(fetch = FetchType.EAGER)
     private Set<Project> projects;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Project> projectsTakePart;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Project> projectsWannaTakePart;
+
 
 //    @OneToMany(mappedBy = "user", cascade=CascadeType.ALL)
 //    private List<Comment> comments;

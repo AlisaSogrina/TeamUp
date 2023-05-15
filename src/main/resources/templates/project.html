@@ -19,5 +19,29 @@
     </form>
 </div>
 
+<div th:if="${project.user == current_user}">
+<!--    <form method="post" checkboxes path="abc" items="${object.elementList}"/>-->
+</div>
+
+<div th:if="${(project.user != current_user) && (!project.usersWannaTakePart.contains(current_user)) && (!project.usersTakePart.contains(current_user))}">
+    <form method="post" th:action="@{'/projects/{id}/takePart'(id=${project.id})}">
+        <button class="button delete_button" type="submit">Take part</button>
+    </form>
+</div>
+
+<div th:if="${(project.user != current_user) && (project.usersWannaTakePart.contains(current_user))}">
+    <h3>Now the author can choose you for his project</h3>
+</div>
+
+<div th:if="${(project.user != current_user) && (project.usersTakePart.contains(current_user))}">
+    <h3>You take part in this project! Congrats!</h3>
+</div>
+
+<div th:if="${(project.user != current_user) && ((project.usersWannaTakePart.contains(current_user)) || (project.usersTakePart.contains(current_user)))}">
+    <form method="post" th:action="@{'/projects/{id}/deleteTakePart'(id=${project.id})}">
+        <button class="button delete_button" type="submit">Decline participation</button>
+    </form>
+</div>
+
 </body>
 </html>
