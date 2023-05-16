@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Change</title>
+    <link th:href="@{/styles/projects.css}" rel="stylesheet"/>
+    <script type="text/javascript" th:src="@{/js/like.js}"></script>
+</head>
+<body>
+
+<div th:if="${project.user == current_user}">
+    <form method="post"
+          th:object="${project}"
+          th:action="@{'/projects/{id}/change/changeProject'(id=*{id})}">
+
+        <h2>Project</h2>
+
+        <input type="text" th:field="*{name}">
+
+        <h2>Text</h2>
+
+        <input type="text" th:field="*{text}">
+
+        <button class="button delete_button" type="submit">Save changes</button>
+    </form>
+
+
+</div>
+
+</body>
+</html>

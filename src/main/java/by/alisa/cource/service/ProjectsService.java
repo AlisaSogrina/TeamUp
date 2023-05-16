@@ -13,6 +13,9 @@ public class ProjectsService {
     @Autowired
     private ProjectsRepository repository;
 
+//    @Autowired
+//    private UsersRepository usersRepository;
+
 
 //    public Iterable<Project> findAllThatContainsSubstr(String substr) {
 //        return repository.findAllByTextContainsIgnoreCase(substr);
@@ -48,6 +51,13 @@ public class ProjectsService {
         Set<User> usersForProjectInDB = projectInDB.getUsersWannaTakePart();
         usersForProjectInDB.remove(currentAuthenticatedUser);
         projectInDB.setUsersWannaTakePart(usersForProjectInDB);
+        repository.save(projectInDB);
+    }
+
+    public void changeById(Long id, Project project) {
+        Project projectInDB = repository.findById(id).get();
+        projectInDB.setName(project.getName());
+        projectInDB.setText(project.getText());
         repository.save(projectInDB);
     }
 }

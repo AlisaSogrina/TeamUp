@@ -40,6 +40,7 @@ public class ProjectsController {
             return "projects";
         }
         projectForm.setUser(usersService.getCurrentAuthenticatedUser());
+
         if (!projectsService.saveProject(projectForm)){
             model.addAttribute("nameError", "Project with such a name already exists");
             return "projects";
@@ -60,15 +61,31 @@ public class ProjectsController {
         return "redirect:/projects";
     }
 
+    @PostMapping("/{id}/change/changeProject")
+    String cnahgeProject(@PathVariable Long id, @ModelAttribute("project") Project project) {
+        projectsService.changeById(id, project);
+        return "redirect:/projects/{id}";
+    }
+
+    @GetMapping("/{id}/change")
+    String wannaCnahgeProject(Model model, @PathVariable Long id) {
+        model.addAttribute("project", projectsService.getById(id));
+        model.addAttribute("current_user", usersService.getCurrentAuthenticatedUser());
+        return "change_project";
+    }
+
+
     @PostMapping("/{id}/takePart")
     String takePartProject(@PathVariable Long id) {
         projectsService.saveUserWannaTakePart(id, usersService.getCurrentAuthenticatedUser());
+//        usersService.saveProjectWannaTakePart(usersService.getCurrentAuthenticatedUser().getId(), projectsService.getById(id));
         return "redirect:/projects/{id}";
     }
 
     @PostMapping("/{id}/deleteTakePart")
     String deleteTakePartProject(@PathVariable Long id) {
         projectsService.deleteUserWannaTakePart(id, usersService.getCurrentAuthenticatedUser());
+//        usersService.deleteProjectWannaTakePart(usersService.getCurrentAuthenticatedUser().getId(), projectsService.getById(id));
         return "redirect:/projects/{id}";
     }
 }
