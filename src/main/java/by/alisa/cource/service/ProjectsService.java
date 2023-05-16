@@ -60,4 +60,20 @@ public class ProjectsService {
         projectInDB.setText(project.getText());
         repository.save(projectInDB);
     }
+
+    public void saveUserTakePart(Long id, User user) {
+        Project projectInDB = repository.findById(id).get();
+        Set<User> usersForProjectInDB = projectInDB.getUsersTakePart();
+        usersForProjectInDB.add(user);
+        projectInDB.setUsersTakePart(usersForProjectInDB);
+        repository.save(projectInDB);
+    }
+
+    public void deleteUserTakePart(Long id, User user) {
+        Project projectInDB = repository.findById(id).get();
+        Set<User> usersForProjectInDB = projectInDB.getUsersTakePart();
+        usersForProjectInDB.remove(user);
+        projectInDB.setUsersTakePart(usersForProjectInDB);
+        repository.save(projectInDB);
+    }
 }
