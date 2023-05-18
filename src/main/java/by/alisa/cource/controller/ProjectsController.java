@@ -78,14 +78,13 @@ public class ProjectsController {
     @PostMapping("/{id}/takePart")
     String takePartProject(@PathVariable Long id) {
         projectsService.saveUserWannaTakePart(id, usersService.getCurrentAuthenticatedUser());
-//        usersService.saveProjectWannaTakePart(usersService.getCurrentAuthenticatedUser().getId(), projectsService.getById(id));
         return "redirect:/projects/{id}";
     }
 
     @PostMapping("/{id}/deleteTakePart")
     String deleteTakePartProject(@PathVariable Long id) {
         projectsService.deleteUserWannaTakePart(id, usersService.getCurrentAuthenticatedUser());
-//        usersService.deleteProjectWannaTakePart(usersService.getCurrentAuthenticatedUser().getId(), projectsService.getById(id));
+        projectsService.deleteUserTakePart(id, usersService.getCurrentAuthenticatedUser());
         return "redirect:/projects/{id}";
     }
 
