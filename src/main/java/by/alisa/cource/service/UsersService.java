@@ -1,5 +1,6 @@
 package by.alisa.cource.service;
 
+import by.alisa.cource.entity.Project;
 import by.alisa.cource.entity.Role;
 import by.alisa.cource.entity.User;
 import by.alisa.cource.repository.RolesRepository;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Set;
 
 @Service
 public class UsersService implements UserDetailsService {
@@ -57,4 +59,37 @@ public class UsersService implements UserDetailsService {
         repository.save(user);
         return true;
     }
+
+    public User getById(Long id) {
+        return repository.findById(id).get();
+    }
+
+//    public void saveProjectForUser(Long id, Project project) {
+//        User userInDB = repository.findById(id).get();
+//        Set<Project> projects = userInDB.getProjects();
+//        projects.add(project);
+//        userInDB.setProjects(projects);
+////        repository.deleteById(id);
+//        repository.save(userInDB);
+//    }
+
+//    public void saveProjectWannaTakePart(Long userId, Project project) {
+//        User userInDB = repository.findById(userId).get();
+//        Set<Project> projects = userInDB.getProjectsWannaTakePart();
+//        projects.add(project);
+//        userInDB.setProjectsWannaTakePart(projects);
+////        repository.deleteById(userId);
+//        repository.save(userInDB);
+//    }
+//
+//    public void deleteProjectWannaTakePart(Long userId, Project project) {
+//        User userInDB = repository.findById(userId).get();
+//        Set<Project> projects = userInDB.getProjectsWannaTakePart();
+//        projects.remove(project);
+//        userInDB.setProjectsWannaTakePart(projects);
+////        repository.deleteById(userId);
+//        repository.save(userInDB);
+//    }
+
+
 }

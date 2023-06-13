@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>User</title>
+  <link th:href="@{/styles/projects.css}" rel="stylesheet"/>
+  <script type="text/javascript" th:src="@{/js/like.js}"></script>
+</head>
+<body>
+
+<h2>User</h2>
+<a th:text="${user.username}"></a>
+
+<h2>User own ideas</h2>
+<ul th:each="project : ${user.getProjects()}">
+  <li>
+    <a th:href="@{http://localhost:8080/projects/{id}(id=${project.id})}"
+       th:name="${project.getName()}"
+       th:text="${project.getName()}">
+    </a>
+  </li>
+</ul>
+
+<a th:unless="${user.getProjects().iterator().hasNext()}">No projects found</a>
+
+<h2>Projects user want to take part</h2>
+<ul th:each="project : ${user.getProjectsWannaTakePart()}">
+  <li>
+    <a th:href="@{http://localhost:8080/projects/{id}(id=${project.id})}"
+       th:name="${project.getName()}"
+       th:text="${project.getName()}">
+    </a>
+  </li>
+</ul>
+
+<a th:unless="${user.getProjectsWannaTakePart().iterator().hasNext()}">No projects found</a>
+
+<h2>Projects user take part</h2>
+<ul th:each="project : ${user.getProjectsTakePart()}">
+  <li>
+    <a th:href="@{http://localhost:8080/projects/{id}(id=${project.id})}"
+       th:name="${project.name}"
+       th:text="${project.getName()}">
+    </a>
+  </li>
+</ul>
+
+<a th:unless="${user.getProjectsTakePart().iterator().hasNext()}">No projects found</a>
+
+</body>
+</html>

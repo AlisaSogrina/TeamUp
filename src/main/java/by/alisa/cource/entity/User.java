@@ -1,7 +1,9 @@
 package by.alisa.cource.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,6 +13,8 @@ import java.util.Collection;
 import java.util.Set;
 
 @Data
+@EqualsAndHashCode(exclude={"projectsTakePart", "projectsWannaTakePart", "projects"})
+//@ToString(exclude={"projectsTakePart", "projectsWannaTakePart", "projects"})
 @NoArgsConstructor
 @Entity
 @Table(name="userEntity")  // postgresql can't create table with name |user|
@@ -37,8 +41,14 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)  // data will be loaded immediately
     private Set<Role> roles;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<Project> projects;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "usersTakePart")
+    private Set<Project> projectsTakePart;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "usersWannaTakePart")
+    private Set<Project> projectsWannaTakePart;
 
 
 //    @OneToMany(mappedBy = "user", cascade=CascadeType.ALL)

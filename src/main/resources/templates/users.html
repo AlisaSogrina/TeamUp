@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Users</title>
-    <link th:href="@{/styles/projects.css}" rel="stylesheet" />
+    <link th:href="@{/styles/projects.css}" rel="stylesheet"/>
 </head>
 <body>
 
 <h1>Users:</h1>
 <ul th:each="user : ${users}">
     <li>
-        <a th:name="${user.username}"
+        <a th:href="@{/users/{id}(id=${user.id})}"
+           th:name="${user.username}"
            th:text="${user.username}"></a>
     </li>
 </ul>
 
-<p th:unless="${users.iterator().hasNext()}">No users found</p>
+<a th:unless="${users.iterator().hasNext()}">No users found</a>
 
 </body>
 </html>

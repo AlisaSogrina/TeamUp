@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -28,6 +29,25 @@ public class Project {
     @Column(columnDefinition = "TEXT")
     private String text;
 
+//    @Size(min = 2, message = "Project status length should be greater than 1")
+//    @Column(columnDefinition = "TEXT")
+//    private String status;
+
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="user_id")
     private User user;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "projects_users_take_part",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_entity_id"))
+    private Set<User> usersTakePart;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "projects_users_wanna_take_part",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_entity_id"))
+    private Set<User> usersWannaTakePart;
 }
