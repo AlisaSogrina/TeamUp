@@ -18,13 +18,13 @@ Web application which allows users to create project ideas and form teams to tak
 <br>
 
 ![](images/registration.png)
-<div style="text-align: center;"> Registration page </div>
+<p align=center> Registration page </p>
 <br>
 
 ![](images/projects.png)
-<div style="text-align: center;"> Projects </div>
+<p align=center> Projects </p>
 <br>
 
 ![](images/project.png)
-<div style="text-align: center;"> Project created by current user </div>
+<p align=center> Project created by current user </p>
 <br>
